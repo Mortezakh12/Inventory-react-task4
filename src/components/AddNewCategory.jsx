@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import useCategories from "../Context/CategoryContext";
 
 const AddNewCategory = () => {
@@ -8,9 +8,12 @@ const AddNewCategory = () => {
     description: "",
   });
   const { addCategory } = useCategories();
+
+  const id = useId();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    addCategory({ ...categoryFormData,createdAt:new Date().toISOString() });
+    addCategory({ ...categoryFormData,createdAt:new Date().toISOString(),id});
     setCategoryFormData({ title: "", description: "" });
   };
 
